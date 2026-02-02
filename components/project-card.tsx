@@ -25,7 +25,7 @@ export const ProjectCard = ({ project, setSelectedImage }: { project: Projects, 
     return (
         <div
             key={project.title}
-            className="group flex flex-col md:flex-row gap-4 md:gap-6 p-4 rounded-2xl bg-linear-to-br from-slate-50 to-slate-100 transition-colors duration-200"
+            className="group flex flex-col md:flex-row gap-4 md:gap-6 p-4 rounded-2xl ring-1 ring-black/5 bg-white/40 backdrop-blur-sm hover:bg-white/60 hover:ring-black/10 transition"
         >
 
             {/* Image */}

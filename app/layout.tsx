@@ -37,8 +37,11 @@ const lineSeed = localFont({
 })
 
 export const metadata: Metadata = {
-  title: "yooo_",
-  description: "yooo_'s (yohei_yayoi) portfolio website!",
+  title: {
+    template: "%s - yooo_",
+    default: "yooo_",
+  },
+  description: "yooo_'s (yohei_yayoi) portfolio website",
 };
 
 export default function RootLayout({

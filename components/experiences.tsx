@@ -79,7 +79,7 @@ export default function Experiences() {
 
                                         <div className="flex flex-col min-w-0">
                                             <Link
-                                                href={exp.link}
+                                                href={exp.link as any}
                                                 target="_blank"
                                                 rel="noopener noreferrer"
                                                 className="text-base md:text-lg font-semibold text-zinc-900 group-hover:text-blue-700 transition-colors inline-flex items-center gap-1 truncate"

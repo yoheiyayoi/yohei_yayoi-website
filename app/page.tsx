@@ -6,6 +6,7 @@ import { GitHubLight } from "@ridemountainpig/svgl-react";
 import { CornerLeftUp } from "lucide-react";
 import Image from "next/image";
 import { Link } from 'next-view-transitions'
+import type { Metadata } from 'next'
 
 export default function Page() {
     const currentYear = new Date().getFullYear();
@@ -16,7 +17,7 @@ export default function Page() {
             <div className="w-full py-8 md:py-16 flex items-center justify-center">
                 <div className="grid items-center gap-12 md:grid-cols-[auto_1fr] md:gap-16">
                     <div className="relative mx-auto md:mx-0">
-                        <div className="relative size-40 overflow-hidden rounded-3xl border-2 bg-muted transition hover:scale-105 hover:-rotate-3 hover:shadow-xl">
+                        <div className="relative size-40 overflow-hidden rounded-3xl border-2 bg-muted transition duration-500 hover:scale-105 hover:-rotate-3 hover:shadow-xl">
                             <Image
                                 src="/silly_cat3.jpg"
                                 alt="yooo_ profile picture"
@@ -40,11 +41,11 @@ export default function Page() {
                         </p>
 
                         <div className="flex items-center justify-center gap-2 md:justify-start">
-                            <Button className="hover:scale-105 hover:-rotate-3 transition" asChild>
+                            <Button className="transition duration-300 hover:scale-105 hover:-rotate-3" asChild>
                                 <Link href="/work"><CornerLeftUp /> View my works</Link>
                             </Button>
-                            <Button className="hover:scale-105 hover:-rotate-3 transition" variant="outline" asChild>
-                                <Link href="/blog"><GitHubLight /> View my github</Link>
+                            <Button className="transition duration-300 hover:scale-105 hover:-rotate-3" variant="outline" asChild>
+                                <a href="https://github.com/yoheiyayoi" target="_blank"><GitHubLight /> View my github</a>
                             </Button>
                         </div>
                     </div>

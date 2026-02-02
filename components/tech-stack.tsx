@@ -50,7 +50,7 @@ export default function TechStack() {
 
             <div>
                 {Object.keys(techStacks).map((category) => (
-                    <div key={category} className="mb-6">
+                    <div key={category} className="mb-6 block md:flex md:gap-2 items-baseline md:itmes-center">
                         <span className="font-semibold">{category}:</span>
                         <div className="flex flex-wrap gap-1 mt-1">
                             {techStacks[category].map((item) => (

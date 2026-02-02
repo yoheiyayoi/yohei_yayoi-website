@@ -3,6 +3,8 @@ import { type ReactNode } from "react";
 import { cn } from "@/lib/utils";
 
 import Image from "next/image";
+import { Button } from "../ui/button";
+import { Discord, GitHubLight } from "@ridemountainpig/svgl-react";
 interface FooterLink {
     text: string;
     href: string;
@@ -27,15 +29,19 @@ export default function FooterSection({
     className,
 }: FooterProps) {
     return (
-        <footer className={cn("bg-white/30 w-full", className)}>
+        <footer className={cn("bg-white/30 w-full border border-gray-200", className)}>
             <div className="container max-w-7xl mx-auto">
                 <div className="text-slate-900 font-medium p-3">
                     <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between">
                         <div className="flex items-center gap-2">
                             <Image src="/yooo_.png" width={45} height={45} alt="yooo_" />
+                            <p className="text-sm text-slate-600 ml-1">
+                                © 2026 yooo_. All rights reserved
+                            </p>
                         </div>
-                        <p className="text-sm text-slate-600 ml-1">
-                            © 2026 yooo_. All rights reserved
+                        <p className="flex gap-2 items-center">
+                            <a href="https://github.com/yoheiyayoi" target="_blank" className="size-6"><GitHubLight /></a>
+                            <a href="https://discord.com/invite/qp7rTNMgUD" target="_blank" className="size-6"><Discord /></a>
                         </p>
                     </div>
                 </div>
