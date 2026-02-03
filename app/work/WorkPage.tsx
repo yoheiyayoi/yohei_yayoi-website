@@ -1,26 +1,20 @@
 "use client"
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import { ExternalLink, Github, MousePointerClick, Calendar, Briefcase, X, List } from 'lucide-react'
-import { projects, roblox_maps } from "@/data/project";
+import { ExternalLink, X, List } from 'lucide-react'
+import { projects } from "@/data/project";
 import { Link } from 'next-view-transitions'
 import Image from "next/image";
-import Badge from '@/components/Badge';
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { ProjectCard } from '@/components/project-card';
 
-import type { Metadata } from 'next'
-
 export default function WorkPage() {
     const [selectedImage, setSelectedImage] = useState<{ src: string; alt: string } | null>(null);
 
-    const categories = [
-        "All",
-        ...Array.from(new Set(projects.map((p) => p.category || "Others"))),
-    ];
+    const projectCategories = Array.from(new Set(projects.map((p) => p.category || "Others")));
+    console.log("Project Categories:", projectCategories);
 
-    const ROBLOX_TAB_VALUE = "__roblox__";
     const TAB_CLASS = [
         "h-9 px-4 rounded-full",
         "border border-border bg-background text-foreground",
@@ -32,15 +26,31 @@ export default function WorkPage() {
         "transition-colors",
     ].join(" ")
 
+    const tabs = [
+        { value: "All", label: "All" },
+        ...projectCategories.map((cat) => ({ value: cat, label: cat })),
+    ];
+
+    const getItemsForTab = (tabValue: string) => {
+        const items =
+            tabValue === "All"
+                ? [...projects]
+                : projects.filter((p) => (p.category || "Others") === tabValue);
+
+        return items.sort((a: any, b: any) => (b.year || 0) - (a.year || 0));
+    };
+
     return (
         <div className="container max-w-3xl mx-auto">
-            <div className="py-8">
+            <div className="py-10">
                 <div>
-                    <div className="mt-5 mb-5">
+                    <div className="mb-5">
                         <h1 className="font-bold text-xl md:text-2xl mb-3 flex items-center gap-2">
                             <List className="w-7 h-7 text-blue-500" />
                             Projects
                         </h1>
+
+                        <p className="monkey-font text-lg md:text-xl gradient-text">โปรเจกต์หรืองานต่าง ๆ ที่ผมเคยทำมา</p>
 
                         <p className='mt-2 flex flex-col sm:flex-row gap-2 sm:items-center text-sm sm:text-base'>
                             <span>โน๊ต: คลิกที่รูปภาพเพื่อดูขนาดเต็ม และ แนะนำให้ดูงานทั้งหมดใน</span>
@@ -59,59 +69,23 @@ export default function WorkPage() {
                                 "w-fit h-auto p-1 gap-2",
                                 "inline-flex flex-wrap items-center",
                                 "rounded-full bg-transparent border-0 shadow-none",
-                            ].join(" ")}
-                        >
-
-                            <TabsTrigger
-                                value="All"
-                                className={TAB_CLASS}
-                            >
-                                All
-                            </TabsTrigger>
-
-                            <TabsTrigger
-                                value={ROBLOX_TAB_VALUE}
-                                className={TAB_CLASS}
-                            >
-                                Roblox Work
-                            </TabsTrigger>
-
-                            {categories.filter((c) => c !== "All").map((cat) => (
-                                <TabsTrigger
-                                    key={cat}
-                                    value={cat}
-                                    className={TAB_CLASS}
-                                >
-                                    {cat}
+                            ].join(" ")}>
+                            {tabs.map((t) => (
+                                <TabsTrigger key={t.value} value={t.value} className={TAB_CLASS}>
+                                    {t.label}
                                 </TabsTrigger>
                             ))}
                         </TabsList>
 
-                        <TabsContent value={ROBLOX_TAB_VALUE} className="mt-5">
-                            <div className="flex flex-col gap-6">
-                                {roblox_maps.map((item, index) => (
-                                    <ProjectCard key={index} project={item} setSelectedImage={setSelectedImage} />
-                                ))}
-                            </div>
-                        </TabsContent>
-
-                        {/* Project Cards */}
-                        {categories.map((category) => {
-                            const filteredProjects = (category === "All"
-                                ? projects
-                                : projects.filter((p) => p.category === category))
-                                .sort((a, b) => (b.year || 0) - (a.year || 0));
-
-                            return (
-                                <TabsContent key={category} value={category} className="mt-5">
-                                    <div className="flex flex-col gap-6">
-                                        {filteredProjects.map((item, index) => (
-                                            <ProjectCard key={index} project={item} setSelectedImage={setSelectedImage} />
-                                        ))}
-                                    </div>
-                                </TabsContent>
-                            );
-                        })}
+                        {tabs.map((t) => (
+                            <TabsContent key={t.value} value={t.value} className="mt-5">
+                                <div className="flex flex-col gap-6">
+                                    {getItemsForTab(t.value).map((item, index) => (
+                                        <ProjectCard key={index} project={item as any} setSelectedImage={setSelectedImage} />
+                                    ))}
+                                </div>
+                            </TabsContent>
+                        ))}
                     </Tabs>
                 </div>
             </div>

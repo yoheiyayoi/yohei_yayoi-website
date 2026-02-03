@@ -19,6 +19,8 @@ export default function BlogPage() {
                     Blogs
                 </h1>
 
+                <p className="monkey-font text-lg md:text-xl gradient-text">เรื่องเล่าและเรื่องราว</p>
+
                 <p className="text-md text-zinc-500">
                     พื้นที่เล่าเรื่องราว ความคิด และบันทึกการเดินทาง หรือการระบาย หรืออะไรอีกดี ไม่รู้
                 </p>

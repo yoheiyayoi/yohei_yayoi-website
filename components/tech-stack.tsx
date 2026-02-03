@@ -43,6 +43,7 @@ export default function TechStack() {
                     <Sparkles className="w-6 h-6 text-blue-500" />
                     Tech Stack
                 </h2>
+                <p className="monkey-font text-lg md:text-xl gradient-text">Tools ที่ใช้</p>
                 <p className="text-muted-foreground text-md">
                     Technologies and tools I work with
                 </p>

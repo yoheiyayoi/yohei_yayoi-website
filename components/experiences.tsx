@@ -48,6 +48,9 @@ export default function Experiences() {
                     <Briefcase className="w-7 h-7 text-blue-500" />
                     Experience
                 </h1>
+
+                <p className="monkey-font text-lg md:text-xl gradient-text">ประสบการณ์สุดเจ๋ง</p>
+
                 <p className="text-md text-zinc-500">
                     A quick timeline of what I've been doing recently.
                 </p>
