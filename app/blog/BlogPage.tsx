@@ -1,6 +1,6 @@
-import { Book, InfoIcon } from 'lucide-react'
+import { Book, InfoIcon, X } from 'lucide-react'
 import React from 'react'
-
+import Image from "next/image";
 import {
     Alert,
     AlertAction,
@@ -9,8 +9,13 @@ import {
 } from "@/components/ui/alert"
 
 import type { Metadata } from 'next'
+import { getAllPosts } from '@/lib/posts';
+import { BlogCard } from '@/components/blog/blog-card';
 
-export default function BlogPage() {
+export default async function BlogPage() {
+    const posts = await getAllPosts();
+    const publishedPosts = posts.filter((post) => post.metadata.published);
+
     return (
         <div className="container max-w-3xl mx-auto py-10">
             <div className="mb-5">
@@ -26,12 +31,18 @@ export default function BlogPage() {
                 </p>
             </div>
 
-            <div>
+            {publishedPosts.length === 0 ? (
                 <Alert>
                     <InfoIcon />
                     <AlertTitle className="font-semibold">ไม่มี Blog อะไรในขณะนี้</AlertTitle>
                 </Alert>
-            </div>
+            ) : (
+                <div className="flex flex-col gap-6">
+                    {publishedPosts.map((post) => (
+                        <BlogCard key={post.slug} blog={post} />
+                    ))}
+                </div>
+            )}
         </div>
     )
 }

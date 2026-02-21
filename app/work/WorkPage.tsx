@@ -52,7 +52,7 @@ export default function WorkPage() {
 
                         <p className="monkey-font text-lg md:text-xl gradient-text">โปรเจกต์หรืองานต่าง ๆ ที่ผมเคยทำมา</p>
 
-                        <p className='mt-2 flex flex-col sm:flex-row gap-2 sm:items-center text-sm sm:text-base'>
+                        <p className='text-md text-zinc-500 flex flex-col sm:flex-row gap-2 sm:items-center'>
                             <span>โน๊ต: คลิกที่รูปภาพเพื่อดูขนาดเต็ม และ แนะนำให้ดูงานทั้งหมดใน</span>
                             <Button variant="outline" size="sm" asChild className="w-fit hover:scale-105 hover:rotate-3 transition">
                                 <Link href={"https://discord.gg/qp7rTNMgUD"} target='_blank'>
@@ -79,7 +79,7 @@ export default function WorkPage() {
 
                         {tabs.map((t) => (
                             <TabsContent key={t.value} value={t.value} className="mt-5">
-                                <div className="flex flex-col gap-6">
+                                <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-3">
                                     {getItemsForTab(t.value).map((item, index) => (
                                         <ProjectCard key={index} project={item as any} setSelectedImage={setSelectedImage} />
                                     ))}

@@ -28,8 +28,8 @@ export default function Page() {
                         </div>
                     </div>
                     <div className="space-y-3 text-center md:text-left">
-                        <div className="space-y-2">
-                            <p className="font-mono text-sm text-muted-foreground">
+                        <div className="mb-3">
+                            <p className="font-mono text-md text-muted-foreground">
                                 Game Developer
                             </p>
                             <h1 className="text-3xl font-semibold tracking-tight">

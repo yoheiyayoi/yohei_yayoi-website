@@ -1,10 +1,15 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local"
+import { Google_Sans } from "next/font/google"
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import { ThemeProvider } from "@/components/theme-provider";
 import FooterSection from "@/components/layout/Footer";
 import { ViewTransitions } from 'next-view-transitions'
+
+const googleSans = Google_Sans({
+  subsets: ['latin'],
+})
 
 const lineSeed = localFont({
   src: [
@@ -57,7 +62,7 @@ export default function RootLayout({
         data-theme="light"
         style={{ colorScheme: "light" }}
       >
-        <body className={`${lineSeed.className} antialiased`}>
+        <body className={`${googleSans.className} antialiased`}>
           <ThemeProvider
             defaultTheme="light"
             enableSystem={false}

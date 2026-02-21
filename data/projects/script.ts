@@ -10,7 +10,7 @@ export const scriptProjects: Projects[] = [
         stacks: ["Roblox Luau", "Roblox GUI"],
         category: "Script",
         year: 2026,
-        type: "Customer Work",
+        type: "Work",
     },
     {
         title: "[Mount Enchantia] Bank System",
@@ -21,7 +21,7 @@ export const scriptProjects: Projects[] = [
         stacks: ["Roblox Luau", "Roblox GUI"],
         category: "Script",
         year: 2025,
-        type: "Customer Work",
+        type: "Work",
     },
     {
         title: "[Mount Enchantia] Inventory System",
@@ -32,7 +32,7 @@ export const scriptProjects: Projects[] = [
         stacks: ["Roblox Luau", "Roblox GUI"],
         category: "Script",
         year: 2025,
-        type: "Customer Work",
+        type: "Work",
     },
     {
         title: "[Mount Enchantia] Loading Screen System",
@@ -43,7 +43,7 @@ export const scriptProjects: Projects[] = [
         stacks: ["Roblox Luau", "Roblox GUI"],
         category: "Script",
         year: 2025,
-        type: "Customer Work",
+        type: "Work",
     },
     {
         title: "[Mount Enchantia] Nametag with flags System",
@@ -54,7 +54,7 @@ export const scriptProjects: Projects[] = [
         stacks: ["Roblox Luau", "Roblox GUI"],
         category: "Script",
         year: 2025,
-        type: "Customer Work",
+        type: "Work",
     },
 
     {
@@ -78,7 +78,7 @@ export const scriptProjects: Projects[] = [
         stacks: ["Roblox Luau", "Roblox GUI"],
         category: "Script",
         year: 2024,
-        type: "Customer Work",
+        type: "Work",
     },
     {
         title: "[TEELANKAA] Rewards System",
@@ -89,7 +89,7 @@ export const scriptProjects: Projects[] = [
         stacks: ["Roblox Luau", "Roblox GUI"],
         category: "Script",
         year: 2024,
-        type: "Customer Work",
+        type: "Work",
     },
     {
         title: "Tower Defense - Zombie Movement System",
@@ -111,6 +111,6 @@ export const scriptProjects: Projects[] = [
         stacks: ["Roblox Luau", "Roblox GUI"],
         category: "Script",
         year: 2024,
-        type: "Customer Work",
+        type: "Work",
     },
 ];

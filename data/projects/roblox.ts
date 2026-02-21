@@ -4,7 +4,7 @@ export const robloxProjects: Projects[] = [
     {
         title: "Kraken Patty Tycoon",
         description: "(อยู่ในช่วงพัฒนา)",
-        image: "https://t3.rbxcdn.com/180DAY-2c1129a448e74940038294483f07d5a6",
+        image: "/projects/game/kraken_patty_logo.png",
         linkGithub: "",
         linkWebsite: "",
         linkRoblox: "",
@@ -51,7 +51,7 @@ export const robloxProjects: Projects[] = [
     },
     {
         title: "TEELANKAA",
-        description: "แมวแนวเดินชิล ๆ เต้น พูดคุย",
+        description: "แมพแนวเดินชิล ๆ เต้น พูดคุย",
         image: "https://tr.rbxcdn.com/180DAY-848d718b6f0364509cdb1efd31655b73/600/600/Image/Webp/noFilter",
         linkGithub: "",
         linkWebsite: "",
@@ -63,7 +63,7 @@ export const robloxProjects: Projects[] = [
     },
     {
         title: "Eggo Smash 🐣",
-        description: "แมวแนวตีไข่ สุ่มของ (Closed for maintenance)",
+        description: "แมพแนวตีไข่ สุ่มของ (Closed for maintenance)",
         image: "https://tr.rbxcdn.com/180DAY-9c1a4f3fcd66f1283628c80bbb752ce7/600/600/Image/Webp/noFilter",
         linkGithub: "",
         linkWebsite: "",

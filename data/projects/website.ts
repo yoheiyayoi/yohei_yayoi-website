@@ -28,7 +28,7 @@ export const websiteProjects: Projects[] = [
         description: "Portfolio ส่วนตัวอันใหม่ของผมเองครับ เว็บนี้นี่แหละ :)",
         image: "/projects/website/yohei_yayoi.png",
         linkGithub: "https://github.com/yoheiyayoi/yohei_yayoi-website",
-        linkWebsite: "",
+        linkWebsite: "https://github.com/yoheiyayoi/yohei_yayoi-website",
         stacks: ["Next.js", "TailwindCSS", "shadcn/ui"],
         category: "Website",
         year: 2026,
