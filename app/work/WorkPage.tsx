@@ -5,27 +5,29 @@ import { ExternalLink, X, List } from 'lucide-react'
 import { projects } from "@/data/project";
 import { Link } from 'next-view-transitions'
 import Image from "next/image";
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { ProjectCard } from '@/components/project-card';
 
 export default function WorkPage() {
     const [selectedImage, setSelectedImage] = useState<{ src: string; alt: string } | null>(null);
+    const scrollRef = useRef<HTMLDivElement>(null);
+    const [canScrollRight, setCanScrollRight] = useState(false);
+
+    useEffect(() => {
+        const el = scrollRef.current;
+        if (!el) return;
+
+        const check = () => setCanScrollRight(el.scrollLeft + el.clientWidth < el.scrollWidth - 2);
+        check();
+
+        el.addEventListener("scroll", check);
+        window.addEventListener("resize", check);
+
+        return () => { el.removeEventListener("scroll", check); window.removeEventListener("resize", check); };
+    }, []);
 
     const projectCategories = Array.from(new Set(projects.map((p) => p.category || "Others")));
-    console.log("Project Categories:", projectCategories);
-
-    const TAB_CLASS = [
-        "h-9 px-4 rounded-full",
-        "border border-border bg-background text-foreground",
-        "shadow-none",
-        "hover:bg-muted/60",
-        "data-[state=active]:bg-foreground data-[state=active]:text-background",
-        "data-[state=active]:border-transparent",
-        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
-        "transition-colors",
-    ].join(" ")
-
     const tabs = [
         { value: "All", label: "All" },
         ...projectCategories.map((cat) => ({ value: cat, label: cat })),
@@ -63,27 +65,37 @@ export default function WorkPage() {
                         </p>
                     </div>
 
-                    <Tabs defaultValue="All" className="w-full">
-                        <TabsList
-                            className={[
-                                "w-fit h-auto p-1 gap-2",
-                                "inline-flex flex-wrap items-center",
-                                "rounded-full bg-transparent border-0 shadow-none",
-                            ].join(" ")}>
-                            {tabs.map((t) => (
-                                <TabsTrigger key={t.value} value={t.value} className={TAB_CLASS}>
-                                    {t.label}
-                                </TabsTrigger>
-                            ))}
-                        </TabsList>
+                    <Tabs defaultValue="All" className="gap-1">
+                        <div className="relative">
+                            <div
+                                ref={scrollRef}
+                                className="overflow-x-auto pb-2 mb-1
+                                    [&::-webkit-scrollbar]:h-0.75
+                                    [&::-webkit-scrollbar-track]:bg-muted/40
+                                    [&::-webkit-scrollbar-track]:rounded-full
+                                    [&::-webkit-scrollbar-thumb]:bg-muted-foreground/30
+                                    [&::-webkit-scrollbar-thumb]:rounded-full
+                                    [&::-webkit-scrollbar-thumb:hover]:bg-muted-foreground/60"
+                            >
+                                <TabsList className="w-max flex gap-0.5">
+                                    {tabs.map((t) => (
+                                        <TabsTrigger key={t.value} value={t.value} className="px-5 h-8 text-sm rounded-md">
+                                            {t.label}
+                                        </TabsTrigger>
+                                    ))}
+                                </TabsList>
+                            </div>
+                            {/* Right fade indicator */}
+                            <div
+                                className={`absolute right-0 top-0 h-[calc(100%-6px)] w-10 bg-linear-to-l from-background to-transparent pointer-events-none transition-opacity duration-200 ${canScrollRight ? "opacity-100" : "opacity-0"}`}
+                            />
+                        </div>
 
                         {tabs.map((t) => (
-                            <TabsContent key={t.value} value={t.value} className="mt-5">
-                                <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-3">
-                                    {getItemsForTab(t.value).map((item, index) => (
-                                        <ProjectCard key={index} project={item as any} setSelectedImage={setSelectedImage} />
-                                    ))}
-                                </div>
+                            <TabsContent key={t.value} value={t.value} className="w-full grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-3">
+                                {getItemsForTab(t.value).map((item, index) => (
+                                    <ProjectCard key={index} project={item as any} setSelectedImage={setSelectedImage} />
+                                ))}
                             </TabsContent>
                         ))}
                     </Tabs>

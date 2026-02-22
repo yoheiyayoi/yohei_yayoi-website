@@ -13,8 +13,28 @@ export const websiteProjects: Projects[] = [
         type: "Private"
     },
     {
+        title: "ชากังราวสตูดิโอ",
+        description: "เว็บสำหรับสตูดิโอของผมและเพื่อน ๆ (เลิกพัฒนาแล้วตั้งแต่ปี 2023)",
+        image: "/projects/website/chakangraw_studio.png",
+        linkGithub: "",
+        linkWebsite: "",
+        stacks: ["Nuxt.js", "TailwindCSS"],
+        category: "Website",
+        year: 2023,
+        type: "Private"
+    },
+    {
+        title: "Milk Bucket Bot Website",
+        description: "เว็บสำหรับบอทถังนม ในดิสคอร์ด (เลิกพัฒนาแล้วตั้งแต่ปี 2024)",
+        image: "/projects/website/milk_bucket_discord_bot.png",
+        stacks: ["Next.js", "TailwindCSS"],
+        category: "Website",
+        year: 2024,
+        type: "Private",
+    },
+    {
         title: "yooo_ Portfolio",
-        description: "Portfolio ส่วนตัวของผมเองครับ เว็บนี้นี่แหละ (เว็บเก่า)",
+        description: "Portfolio ส่วนตัวของผมเองครับ (เว็บเก่า)",
         image: "/projects/website/yooo_portfolio.png",
         // linkGithub: "https://github.com/yoheiyayoi/yooo_-portfolio",
         linkWebsite: "",
