@@ -1,3 +1,4 @@
+import LinkIcon from "@/components/LinkIcon";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { getAllPosts, PostMetadata } from "@/lib/posts";
@@ -63,12 +64,7 @@ export default async function Page({
         <div className="container max-w-3xl mx-auto py-3">
             <div className="flex flex-col items-center justify-center px-6 ">
                 <div className="max-w-custom flex flex-col gap-4 w-full">
-                    <Link href={"/blog" as any}>
-                        <Button variant="ghost" className="transition text-gray-600 duration-300 hover:scale-105 hover:rotate-3">
-                            <ArrowLeftIcon className="size-4" />
-                            กลับไปที่ blog
-                        </Button>
-                    </Link>
+                    <LinkIcon href="/blog" text="กลับไปที่ blog" />
 
                     {post.metadata.image && (
                         <div className="relative mb-6 h-60 w-full overflow-hidden rounded-lg border flex justify-center items-center">
@@ -125,12 +121,7 @@ export default async function Page({
 
                     <div className="border-b border-gray-300" />
 
-                    <Link href={"/blog" as any}>
-                        <Button variant="ghost" className="transition text-gray-600 duration-300 hover:scale-105 hover:rotate-3">
-                            <ArrowLeftIcon className="size-4" />
-                            กลับไปที่ blog
-                        </Button>
-                    </Link>
+                    <LinkIcon href="/blog" text="กลับไปที่ blog" />
                 </div>
             </div>
         </div>
