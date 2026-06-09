@@ -2,6 +2,7 @@ import type { Projects } from "@/types/project.type";
 
 export const websiteProjects: Projects[] = [
     {
+        id: 1,
         title: "Shop Website",
         description: "เว็บขายของออนไลน์ ประเภทขายไอดีเกม (เลิกพัฒนาแล้วตั้งแต่ปี 2024)",
         image: "/projects/website/shop_website.png",
@@ -13,6 +14,7 @@ export const websiteProjects: Projects[] = [
         type: "Private"
     },
     {
+        id: 2,
         title: "ชากังราวสตูดิโอ",
         description: "เว็บสำหรับสตูดิโอของผมและเพื่อน ๆ (เลิกพัฒนาแล้วตั้งแต่ปี 2023)",
         image: "/projects/website/chakangraw_studio.png",
@@ -24,6 +26,7 @@ export const websiteProjects: Projects[] = [
         type: "Private"
     },
     {
+        id: 3,
         title: "Milk Bucket Bot Website",
         description: "เว็บสำหรับบอทถังนม ในดิสคอร์ด (เลิกพัฒนาแล้วตั้งแต่ปี 2024)",
         image: "/projects/website/milk_bucket_discord_bot.png",
@@ -33,6 +36,7 @@ export const websiteProjects: Projects[] = [
         type: "Private",
     },
     {
+        id: 4,
         title: "yooo_ Portfolio",
         description: "Portfolio ส่วนตัวของผมเองครับ (เว็บเก่า)",
         image: "/projects/website/yooo_portfolio.png",
@@ -43,7 +47,9 @@ export const websiteProjects: Projects[] = [
         year: 2025,
         type: "Private",
     },
+
     {
+        id: 5,
         title: "yohei_yayoi Portfolio",
         description: "Portfolio ส่วนตัวอันใหม่ของผมเองครับ เว็บนี้นี่แหละ :)",
         image: "/projects/website/yohei_yayoi.png",
@@ -53,5 +59,41 @@ export const websiteProjects: Projects[] = [
         category: "Website",
         year: 2026,
         type: "Public",
+    },
+
+    {
+        id: 6,
+        title: "Club Register",
+        description: "ระบบลงทะเบียนชุมนุมสำหรับโรงเรียนนวมินทราชินูทิศ เตรียมอุดมศึกษาน้อมเกล้า",
+        image: "/projects/website/clubs_ntuniso.png",
+        linkWebsite: "https://clubs.ntuniso.net/login",
+        stacks: ["Next.js", "TailwindCSS", "HeroUI", "Hono", "Cloudflare"],
+        category: "Website",
+        year: 2026,
+        type: "Private",
+    },
+
+    {
+        id: 7,
+        title: "NTUN Fondue",
+        description: "ระบบแจ้งของเสียหายสำหรับโรงเรียนนวมินทราชินูทิศ เตรียมอุดมศึกษาน้อมเกล้า",
+        image: "/projects/website/fondue_ntuniso.png",
+        linkWebsite: "https://fondue.ntuniso.net/",
+        stacks: ["Next.js", "TailwindCSS", "HeroUI", "Hono", "Cloudflare"],
+        category: "Website",
+        year: 2026,
+        type: "Private",
+    },
+
+    {
+        id: 8,
+        title: "Online Certificate System",
+        description: "ระบบเกียรติบัตรออนไลน์สำหรับโรงเรียนนวมินทราชินูทิศ เตรียมอุดมศึกษาน้อมเกล้า",
+        image: "/projects/website/cert_ntuniso.png",
+        linkWebsite: "https://cert.ntuniso.net/",
+        stacks: ["Next.js", "TailwindCSS", "shadcn/ui", "Hono", "Cloudflare"],
+        category: "Website",
+        year: 2026,
+        type: "Private",
     },
 ];

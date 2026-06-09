@@ -39,7 +39,11 @@ export default function WorkPage() {
                 ? [...projects]
                 : projects.filter((p) => (p.category || "Others") === tabValue);
 
-        return items.sort((a: any, b: any) => (b.year || 0) - (a.year || 0));
+        return items.sort((a: any, b: any) => {
+            const aKey = a.id ?? a.year ?? 0;
+            const bKey = b.id ?? b.year ?? 0;
+            return bKey - aKey;
+        });
     };
 
     return (
