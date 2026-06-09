@@ -16,6 +16,14 @@ const platformMeta: Record<
 export default function Experiences() {
     const experiences = [
         {
+            image: "/experience/nit_logo.jpg",
+            title: "Full-Stack Developer",
+            place: "NTUNISo",
+            link: "https://ntuniso.net/",
+            date: "May 2026 - Now",
+            platform: "School"
+        },
+        {
             image: "/experience/rottendoge.png",
             title: "Game Developer",
             place: "RottenDoge",

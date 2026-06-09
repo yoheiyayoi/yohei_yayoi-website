@@ -19,7 +19,7 @@ export default function Page() {
                     <div className="relative mx-auto md:mx-0">
                         <div className="relative size-40 overflow-hidden rounded-3xl border-2 bg-muted transition duration-500 hover:scale-105 hover:-rotate-3 hover:shadow-xl">
                             <Image
-                                src="/silly_cat3.jpg"
+                                src="/yoheiyayoi_body_avatar.png"
                                 alt="yooo_ profile picture"
                                 width={160}
                                 height={160}
@@ -37,7 +37,7 @@ export default function Page() {
                             </h1>
                         </div>
                         <p className="max-w-md text-muted-foreground md:max-w-lg text-lg">
-                            I'm {age} who started with Roblox in 2020. Now I'm a scripter at a Roblox studio and make random projects on the side websites, Minecraft mods, Discord bots. Love coding, space, and comics!
+                            Hi, I started coding in Roblox back in 2020, and now I'm working as a studio scripter. I love bringing random ideas to life whether it's websites, Minecraft mods, or Discord bots. When I'm not coding, you'll probably find me nerding out over space and comics!
                         </p>
 
                         <div className="flex items-center justify-center gap-2 md:justify-start">
