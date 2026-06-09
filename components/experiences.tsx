@@ -9,8 +9,8 @@ const platformMeta: Record<
     string,
     { label: string; badgeClass: string }
 > = {
-    roblox: { label: 'Roblox', badgeClass: 'bg-blue-50 text-blue-700 border border-blue-200/60' },
-    school: { label: 'School', badgeClass: 'bg-zinc-50 text-zinc-700 border border-zinc-200/70' },
+    Roblox: { label: 'Roblox', badgeClass: 'bg-blue-50 text-blue-700 border border-blue-200/60' },
+    School: { label: 'School', badgeClass: 'bg-zinc-50 text-zinc-700 border border-zinc-200/70' },
 }
 
 export default function Experiences() {
@@ -21,7 +21,8 @@ export default function Experiences() {
             place: "NTUNISo",
             link: "https://ntuniso.net/",
             date: "May 2026 - Now",
-            platform: "School"
+            platform: "School",
+            description: "Improved school ecosystem efficiency by creating tools for academic and administrative use."
         },
         {
             image: "/experience/rottendoge.png",
@@ -29,7 +30,8 @@ export default function Experiences() {
             place: "RottenDoge",
             link: "https://www.roblox.com/communities/34121244/RottenDoge#!/about",
             date: "Oct 2024 - Now",
-            platform: "roblox"
+            platform: "Roblox",
+            description: "Collaborated with the studio team to program core gameplay mechanics, and enhance user experience."
         },
         {
             image: "/experience/ghost.png",
@@ -37,7 +39,8 @@ export default function Experiences() {
             place: "Ghost Extermination Company",
             link: "https://www.roblox.com/communities/14813831/Ghost-Extermination-Company#!/about",
             date: "Sept 2023 - July 2024",
-            platform: "roblox"
+            platform: "Roblox",
+            description: "Collaborated with the studio team to program core gameplay mechanics, and enhance user experience."
         },
         {
             image: "/experience/ntun.png",
@@ -45,7 +48,7 @@ export default function Experiences() {
             place: "NTUN",
             link: "http://ntun.ac.th/",
             date: "2021 - Now",
-            platform: "school"
+            platform: "School",
         },
     ]
 
@@ -76,41 +79,48 @@ export default function Experiences() {
                             <div className="absolute -left-1.25 top-6 w-2.5 h-2.5 rounded-full bg-blue-500 border-2 border-white shadow-sm" />
 
                             <div className="group rounded-xl p-3 -ml-3 ring-1 ring-black/5 bg-white/40 backdrop-blur-sm hover:bg-white/60 hover:ring-black/10 transition">
-                                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-3">
-                                    <div className="flex items-start gap-3 min-w-0">
-                                        <div className="relative shrink-0 mt-0.5">
-                                            <Image
-                                                src={exp.image}
-                                                alt={exp.place}
-                                                height={40}
-                                                width={40}
-                                                className="rounded-xl border border-zinc-100 shadow-sm object-cover"
+                                <div className="flex items-start gap-3">
+                                    <div className="relative shrink-0 mt-0.5">
+                                        <Image
+                                            src={exp.image}
+                                            alt={exp.place}
+                                            height={40}
+                                            width={40}
+                                            className="rounded-xl border border-zinc-100 shadow-sm object-cover"
+                                        />
+                                    </div>
+
+                                    <div className="flex flex-col min-w-0 flex-1">
+                                        <div className="flex flex-wrap items-start justify-between gap-x-3 gap-y-1">
+                                            <h1 className="text-base md:text-lg font-semibold text-zinc-900 leading-snug">
+                                                {exp.title}
+                                            </h1>
+
+                                            <Badge
+                                                text={exp.date}
+                                                className="shrink-0 bg-white text-zinc-700 font-semibold text-xs border border-zinc-200/70 whitespace-nowrap"
                                             />
                                         </div>
 
-                                        <div className="flex flex-col min-w-0">
-                                            <Link
-                                                href={exp.link as any}
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                                className="text-base md:text-lg font-semibold text-zinc-900 group-hover:text-blue-700 transition-colors inline-flex items-center gap-1 truncate"
-                                            >
-                                                {exp.place}
-                                                <span className="text-[11px] opacity-50">↗</span>
-                                            </Link>
+                                        <Link
+                                            href={exp.link as any}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="mt-0.5 text-sm md:text-[15px] text-zinc-800 leading-snug hover:text-blue-700 transition-colors inline-flex items-center gap-1 truncate"
+                                        >
+                                            {exp.place}
+                                            <span className="opacity-50">↗</span>
+                                        </Link>
 
-                                            <h3 className="text-sm md:text-[15px] text-zinc-600 leading-snug">
-                                                {exp.title}
-                                            </h3>
+                                        {exp.description && (
+                                            <p className="mt-1.5 text-sm md:text-[15px] text-zinc-600 leading-relaxed">
+                                                {exp.description}
+                                            </p>
+                                        )}
 
-                                            <div className="mt-2 flex flex-wrap gap-2">
-                                                <Badge text={meta.label} className={cn('text-xs font-medium', meta.badgeClass)} />
-                                            </div>
+                                        <div className="mt-2 flex flex-wrap gap-2">
+                                            <Badge text={meta.label} className={cn('text-xs font-medium', meta.badgeClass)} />
                                         </div>
-                                    </div>
-
-                                    <div className="flex items-center gap-2 text-xs text-zinc-400 sm:pt-1">
-                                        <Badge text={exp.date} className="bg-white text-zinc-700 font-semibold text-sm border border-zinc-200/70" />
                                     </div>
                                 </div>
                             </div>
