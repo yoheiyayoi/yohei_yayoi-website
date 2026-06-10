@@ -30,7 +30,7 @@ export const BlogCard = ({ blog }: { blog: PostMetadata }) => {
                         <span>{formatDate(blog.metadata.publishDate)}</span>
                     </h3>
 
-                    <h3 className="font-semibold text-lg">
+                    <h3 className="font-semibold text-xl">
                         <span>{blog.metadata.title}</span>
                     </h3>
 

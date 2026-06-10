@@ -106,7 +106,7 @@ export default async function Page({
                                     <Badge
                                         variant={"secondary"}
                                         key={tag}
-                                        className="text-xs shadow-none cursor-pointer font-normal"
+                                        className="text-xs shadow-none font-normal"
                                     >
                                         {tag}
                                     </Badge>
@@ -114,6 +114,8 @@ export default async function Page({
                             </div>
                         )}
                     </header>
+
+                    <hr />
 
                     <main className="prose dark:prose-invert prose-base">
                         <MDXContent />
