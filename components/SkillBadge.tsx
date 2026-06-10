@@ -10,7 +10,7 @@ export default function SkillBadge({ text, icon, className }: Props) {
   return (
     <div
       className={cn(
-        "flex border rounded-md justify-center items-center px-[0.4rem] py-[0.3rem] text-sm font-semibold hover:bg-blue-50 hover:border-blue-300 transition",
+        "flex border rounded-md justify-center items-center px-[0.4rem] py-[0.3rem] text-sm font-semibold",
         className
       )}
     >

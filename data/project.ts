@@ -10,8 +10,8 @@ import { uiProjects } from "./projects/ui";
 import { scriptProjects } from "./projects/script";
 
 export const projects: Projects[] = [
-    ...robloxProjects,
     ...websiteProjects,
+    ...robloxProjects,
     ...programProjects,
     ...discordBotProjects,
     ...uiProjects,

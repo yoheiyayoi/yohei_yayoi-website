@@ -98,7 +98,7 @@ export default function Experiences() {
 
                                             <Badge
                                                 text={exp.date}
-                                                className="shrink-0 bg-white text-zinc-700 font-semibold text-xs border border-zinc-200/70 whitespace-nowrap"
+                                                className="shrink-0 bg-white text-zinc-700 font-semibold text-sm border border-zinc-200/70 whitespace-nowrap"
                                             />
                                         </div>
 

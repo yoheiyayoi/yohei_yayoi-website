@@ -36,7 +36,7 @@ export default function Page() {
                                 yohei_yayoi <span className="text-gray-500">, yooo_</span>
                             </h1>
                         </div>
-                        <p className="max-w-md text-muted-foreground md:max-w-lg text-lg">
+                        <p className="max-w-md text-muted-foreground md:max-w-lg text-lg text-start">
                             Hi, I started coding in Roblox back in 2020, and now I'm working as a studio scripter. I love bringing random ideas to life whether it's websites, Minecraft mods, or Discord bots. When I'm not coding, you'll probably find me nerding out over space and comics!
                         </p>
 
@@ -52,7 +52,7 @@ export default function Page() {
                 </div>
             </div>
 
-            <div id="about-me" className="">
+            <div id="about-me" className="mb-16">
                 <Experiences />
                 <TechStack />
             </div>
