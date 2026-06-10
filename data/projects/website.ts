@@ -63,7 +63,7 @@ export const websiteProjects: Projects[] = [
 
     {
         id: 6,
-        title: "Club Register",
+        title: "NTUN Club Register",
         description: "ระบบลงทะเบียนชุมนุมสำหรับโรงเรียนนวมินทราชินูทิศ เตรียมอุดมศึกษาน้อมเกล้า",
         image: "/projects/website/clubs_ntuniso.png",
         linkWebsite: "https://clubs.ntuniso.net/login",
@@ -87,7 +87,7 @@ export const websiteProjects: Projects[] = [
 
     {
         id: 8,
-        title: "Online Certificate System",
+        title: "NTUN Online Certificate",
         description: "ระบบเกียรติบัตรออนไลน์สำหรับโรงเรียนนวมินทราชินูทิศ เตรียมอุดมศึกษาน้อมเกล้า",
         image: "/projects/website/cert_ntuniso.png",
         linkWebsite: "https://cert.ntuniso.net/",
