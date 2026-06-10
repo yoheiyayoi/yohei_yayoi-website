@@ -5,27 +5,12 @@ import { ExternalLink, X, List } from 'lucide-react'
 import { projects } from "@/data/project";
 import { Link } from 'next-view-transitions'
 import Image from "next/image";
-import { useState, useRef, useEffect } from 'react';
+import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { ProjectCard } from '@/components/project-card';
 
 export default function WorkPage() {
     const [selectedImage, setSelectedImage] = useState<{ src: string; alt: string } | null>(null);
-    const scrollRef = useRef<HTMLDivElement>(null);
-    const [canScrollRight, setCanScrollRight] = useState(false);
-
-    useEffect(() => {
-        const el = scrollRef.current;
-        if (!el) return;
-
-        const check = () => setCanScrollRight(el.scrollLeft + el.clientWidth < el.scrollWidth - 2);
-        check();
-
-        el.addEventListener("scroll", check);
-        window.addEventListener("resize", check);
-
-        return () => { el.removeEventListener("scroll", check); window.removeEventListener("resize", check); };
-    }, []);
 
     const projectCategories = Array.from(new Set(projects.map((p) => p.category || "Others")));
     const tabs = [
@@ -40,9 +25,13 @@ export default function WorkPage() {
                 : projects.filter((p) => (p.category || "Others") === tabValue);
 
         return items.sort((a: any, b: any) => {
-            const aKey = a.id ?? a.year ?? 0;
-            const bKey = b.id ?? b.year ?? 0;
-            return bKey - aKey;
+            // what the heck even is this logic?
+            // i don't know but it's working
+            if ((b.year ?? 0) !== (a.year ?? 0)) {
+                return (b.year ?? 0) - (a.year ?? 0);
+            }
+
+            return (b.id ?? -1) - (a.id ?? -1);
         });
     };
 
@@ -58,45 +47,38 @@ export default function WorkPage() {
 
                         <p className="monkey-font text-lg md:text-xl gradient-text">โปรเจกต์หรืองานต่าง ๆ ที่ผมเคยทำมา</p>
 
-                        <p className='text-md text-zinc-500 flex flex-col sm:flex-row gap-2 sm:items-center'>
+                        <div className='text-md text-zinc-500 flex flex-col sm:flex-row gap-2 sm:items-center mt-2'>
                             <span>โน๊ต: คลิกที่รูปภาพเพื่อดูขนาดเต็ม และ แนะนำให้ดูงานทั้งหมดใน</span>
                             <Button variant="outline" size="sm" asChild className="w-fit hover:scale-105 hover:rotate-3 transition">
                                 <Link href={"https://discord.gg/qp7rTNMgUD"} target='_blank'>
-                                    <ExternalLink /> ดิสคอร์ด
+                                    <ExternalLink className="w-4 h-4 mr-1" /> ดิสคอร์ด
                                 </Link>
                             </Button>
                             <span>จะอัปเดตเร็วกว่า</span>
-                        </p>
+                        </div>
                     </div>
 
-                    <Tabs defaultValue="All" className="gap-1">
-                        <div className="relative">
-                            <div
-                                ref={scrollRef}
-                                className="overflow-x-auto pb-2 mb-1
-                                    [&::-webkit-scrollbar]:h-0.75
-                                    [&::-webkit-scrollbar-track]:bg-muted/40
-                                    [&::-webkit-scrollbar-track]:rounded-full
-                                    [&::-webkit-scrollbar-thumb]:bg-muted-foreground/30
-                                    [&::-webkit-scrollbar-thumb]:rounded-full
-                                    [&::-webkit-scrollbar-thumb:hover]:bg-muted-foreground/60"
-                            >
-                                <TabsList className="w-max flex gap-0.5">
-                                    {tabs.map((t) => (
-                                        <TabsTrigger key={t.value} value={t.value} className="px-5 h-8 text-sm rounded-md">
-                                            {t.label}
-                                        </TabsTrigger>
-                                    ))}
-                                </TabsList>
-                            </div>
-                            {/* Right fade indicator */}
-                            <div
-                                className={`absolute right-0 top-0 h-[calc(100%-6px)] w-10 bg-linear-to-l from-background to-transparent pointer-events-none transition-opacity duration-200 ${canScrollRight ? "opacity-100" : "opacity-0"}`}
-                            />
-                        </div>
+                    <Tabs defaultValue="All" className="w-full flex flex-col gap-4">
+                        <TabsList className="flex flex-wrap items-center justify-start w-full h-auto! p-1.5 bg-muted rounded-lg gap-1.5">
+                            {tabs.map((t) => {
+                                const count = getItemsForTab(t.value).length;
+                                return (
+                                    <TabsTrigger
+                                        key={t.value}
+                                        value={t.value}
+                                        className="px-4 h-8 text-sm rounded-md shrink-0 data-[state=active]:bg-background data-[state=active]:shadow-sm flex items-center gap-1.5"
+                                    >
+                                        {t.label}
+                                        <span className="text-[11px] px-1.5 py-0.5 rounded-full bg-muted text-muted-foreground group-data-[state=active]:bg-slate-300 group-data-[state=active]:text-slate-700">
+                                            {count}
+                                        </span>
+                                    </TabsTrigger>
+                                );
+                            })}
+                        </TabsList>
 
                         {tabs.map((t) => (
-                            <TabsContent key={t.value} value={t.value} className="w-full grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-3">
+                            <TabsContent key={t.value} value={t.value} className="w-full grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-3 m-0 outline-none">
                                 {getItemsForTab(t.value).map((item, index) => (
                                     <ProjectCard key={index} project={item as any} setSelectedImage={setSelectedImage} />
                                 ))}

@@ -11,7 +11,7 @@ export default function Footer({
     className,
 }: FooterProps) {
     return (
-        <footer className={cn("bg-white w-full border-t border-border", className)}>
+        <footer className={cn("bg-white w-full border-t border-border/50", className)}>
             <div className="mx-auto max-w-4xl px-6 w-full">
                 <div className="flex flex-col sm:flex-row items-center justify-between gap-3 text-gray-500 text-[12px] sm:text-[13px] tracking-wide text-center sm:text-left pb-6 border-t border-black/4 pt-4">
                     <p>
