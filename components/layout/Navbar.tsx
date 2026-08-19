@@ -10,6 +10,7 @@ import { Menu, X } from 'lucide-react'
 const Links = [
     { name: 'Home', href: '/' },
     { name: 'Work', href: '/work' },
+    { name: 'Roblox', href: '/roblox' },
     { name: 'Blog', href: '/blog' },
 ]
 
