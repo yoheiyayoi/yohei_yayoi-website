@@ -1,61 +1,90 @@
-import { ComponentExample } from "@/components/component-example";
 import Experiences from "@/components/experiences";
 import TechStack from "@/components/tech-stack";
 import { Button } from "@/components/ui/button";
+import { websiteProjects } from "@/data/projects/website";
 import { GitHubLight } from "@ridemountainpig/svgl-react";
-import { CornerLeftUp } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
-import { Link } from 'next-view-transitions'
-import type { Metadata } from 'next'
+import { Link } from "next-view-transitions";
+import SealWalker from "@/components/seal-walker";
 
 export default function Page() {
-    const currentYear = new Date().getFullYear();
-    const age = currentYear - 2009; // i was born in 2008 btw
+    const selectedWork = [8, 7, 6].flatMap((id) =>
+        websiteProjects.filter((project) => project.id === id)
+    );
 
     return (
-        <div className="container max-w-3xl mx-auto">
-            <div className="w-full py-8 md:py-16 flex items-center justify-center">
-                <div className="grid items-center gap-12 md:grid-cols-[auto_1fr] md:gap-16">
-                    <div className="relative mx-auto md:mx-0">
-                        <div className="relative size-40 overflow-hidden rounded-3xl border-2 bg-muted transition duration-500 hover:scale-105 hover:-rotate-3 hover:shadow-xl">
+        <main className="mx-auto w-full max-w-3xl px-6">
+            <section className="py-16 md:py-24">
+                <div className="grid items-center gap-10 md:grid-cols-[140px_1fr] md:gap-14">
+                    <div className="mx-auto md:mx-0">
+                        <div className="relative size-32 overflow-hidden rounded-2xl border border-border bg-muted md:size-40 transition duration-500 hover:scale-105 hover:-rotate-3 hover:shadow-xl">
                             <Image
                                 src="/yoheiyayoi_body_avatar.png"
                                 alt="yooo_ profile picture"
-                                width={160}
-                                height={160}
+                                fill
+                                priority
                                 className="object-cover"
                             />
                         </div>
                     </div>
-                    <div className="space-y-3 text-center md:text-left">
-                        <div className="mb-3">
-                            <p className="font-mono text-md text-muted-foreground">
-                                Game Developer
-                            </p>
-                            <h1 className="text-3xl font-semibold tracking-tight">
-                                yohei_yayoi <span className="text-gray-500">, yooo_</span>
-                            </h1>
-                        </div>
-                        <p className="max-w-md text-muted-foreground md:max-w-lg text-lg text-start">
-                            Hi, I started coding in Roblox back in 2020, and now I'm working as a studio scripter. I love bringing random ideas to life whether it's websites, Minecraft mods, or Discord bots. When I'm not coding, you'll probably find me nerding out over space and comics!
+
+                    <div className="text-center md:text-left">
+                        <p className="mb-3 font-mono text-xs uppercase tracking-[0.18em] text-muted-foreground">
+                            Game Developer
                         </p>
 
-                        <div className="flex items-center justify-center gap-2 md:justify-start">
-                            <Button className="transition duration-300 hover:scale-105 hover:-rotate-3" asChild>
-                                <Link href="/work"><CornerLeftUp /> View my works</Link>
+                        <h1 className="text-3xl font-semibold tracking-tight md:text-4xl">
+                            yohei_yayoi
+                            <span className="ml-2 font-normal text-muted-foreground">
+                                yooo_
+                            </span>
+                        </h1>
+
+                        <p className="mt-5 max-w-xl text-[15px] leading-7 text-muted-foreground md:text-base">
+                            I started coding in Roblox back in 2020 and now work
+                            as a studio scripter. I enjoy turning random ideas
+                            into real projects, whether it's games, websites,
+                            Minecraft mods, or Discord bots.
+                        </p>
+
+                        <p className="mt-3 max-w-xl text-[15px] leading-7 text-muted-foreground md:text-base">
+                            Outside of coding, I'm usually learning something
+                            new, reading comics, or nerding out about space.
+                        </p>
+
+                        <div className="mt-7 flex flex-wrap items-center justify-center gap-3 md:justify-start">
+                            <Button asChild>
+                                <Link href="/work">
+                                    View my work
+                                    <ArrowUpRight className="size-4" />
+                                </Link>
                             </Button>
-                            <Button className="transition duration-300 hover:scale-105 hover:-rotate-3" variant="outline" asChild>
-                                <a href="https://github.com/yoheiyayoi" target="_blank"><GitHubLight /> View my github</a>
+
+                            <Button variant="outline" asChild>
+                                <a
+                                    href="https://github.com/yoheiyayoi"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    <GitHubLight className="size-4" />
+                                    GitHub
+                                </a>
                             </Button>
                         </div>
+
+                        <SealWalker />
                     </div>
                 </div>
-            </div>
+            </section>
 
-            <div id="about-me" className="mb-16">
+            <section
+                id="about-me"
+                className="py-2 mb-10"
+            >
                 <Experiences />
                 <TechStack />
-            </div>
-        </div>
-    )
+            </section>
+        </main>
+    );
 }

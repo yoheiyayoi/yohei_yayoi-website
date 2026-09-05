@@ -184,3 +184,58 @@
 .gradient-text {
   @apply bg-linear-to-r from-blue-500 to-pink-500 text-transparent bg-clip-text;
 }
+
+@keyframes seal-walk {
+    0% {
+        left: 0;
+        transform: translateY(0) scaleX(1) rotate(-2deg);
+    }
+
+    10% {
+        transform: translateY(-2px) scaleX(1) rotate(2deg);
+    }
+
+    20% {
+        transform: translateY(0) scaleX(1) rotate(-2deg);
+    }
+
+    40% {
+        transform: translateY(-2px) scaleX(1) rotate(2deg);
+    }
+
+    48% {
+        left: calc(100% - 48px);
+        transform: translateY(0) scaleX(1);
+    }
+
+    50% {
+        left: calc(100% - 48px);
+        transform: scaleX(-1);
+    }
+
+    60% {
+        transform: translateY(-2px) scaleX(-1) rotate(2deg);
+    }
+
+    70% {
+        transform: translateY(0) scaleX(-1) rotate(-2deg);
+    }
+
+    90% {
+        transform: translateY(-2px) scaleX(-1) rotate(2deg);
+    }
+
+    98% {
+        left: 0;
+        transform: translateY(0) scaleX(-1);
+    }
+
+    100% {
+        left: 0;
+        transform: scaleX(1);
+    }
+}
+
+.animate-seal-walk {
+    animation: seal-walk 9s linear infinite;
+}
