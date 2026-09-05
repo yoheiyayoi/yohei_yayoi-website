@@ -1,11 +1,11 @@
-import type { ReactNode } from 'react'
-import { TypeScript, JavaScript, Lua, Python, Nextjs, Bun, ReactDark, TailwindCSS, ShadcnUiLight, TanStack, PrismaLight, RobloxLight, VisualStudioCode, ZedLight, Tauri, GoLight, Java, Hono, ElysiaJS, Cloudflare, VercelLight } from "@ridemountainpig/svgl-react";
-
-
+import React from 'react'
+import { TypeScript, JavaScript, Lua, Python, Nextjs, Bun, ReactDark, TailwindCSS, ShadcnUiLight, TanStack, PrismaLight, RobloxLight, VisualStudioCode, ZedLight, Tauri, GoLight, Java, Hono, ElysiaJS, Cloudflare, VercelDark, VercelLight } from "@ridemountainpig/svgl-react";
+import Image from 'next/image';
+import { Sparkles } from 'lucide-react';
 import SkillBadge from './SkillBadge';
 
 export default function TechStack() {
-    const techStacks: Record<string, { name: string; icon: ReactNode }[]> = {
+    const techStacks: Record<string, { name: string; icon: any }[]> = {
         "Languages & Runtime": [
             { name: "Luau", icon: <Lua /> },
             { name: "Python", icon: <Python /> },
@@ -47,16 +47,31 @@ export default function TechStack() {
     }
 
     return (
-        <section aria-labelledby="tools-title" className="mt-20 grid gap-10 border-t border-border pt-16 lg:grid-cols-[1fr_1.8fr] lg:gap-20">
-            <div><p className="eyebrow">04 / THE TOOLKIT</p><h2 id="tools-title" className="section-title">The right tools.<br />Endless possibilities.</h2><p className="mt-5 text-sm text-muted-foreground">A few things I enjoy working with.</p></div>
-            <div className="space-y-6">
-                {Object.entries(techStacks).map(([category, items]) => (
-                    <div key={category}>
-                        <h3 className="mb-3 text-xs text-muted-foreground">{category}</h3>
-                        <div className="flex flex-wrap gap-2">{items.map((item) => <SkillBadge key={item.name} text={item.name} icon={item.icon} className="rounded-none border-border bg-transparent px-3 py-2 text-xs font-normal" />)}</div>
+        <div className="w-full mt-16">
+            <div className="mb-4">
+                <h2 className="text-xl md:text-2xl font-bold mb-2 flex items-center gap-2">
+                    <Sparkles className="w-6 h-6 text-blue-500" />
+                    Tech Stack
+                </h2>
+                <p className="monkey-font text-lg md:text-xl gradient-text">Tools ที่ใช้</p>
+                <p className="text-muted-foreground text-md">
+                    Technologies and tools I work with
+                </p>
+            </div>
+
+            <div>
+                {Object.keys(techStacks).map((category) => (
+                    <div key={category} className="grid grid-cols-1 md:grid-cols-[200px_1fr] gap-2 mb-4 items-start">
+                        <span className="font-semibold pt-1">{category}:</span>
+                        <div className="flex flex-wrap gap-1">
+                            {techStacks[category].map((item) => (
+                                <SkillBadge key={item.name} text={item.name} icon={item.icon} className="bg-white cursor-default" />
+                            ))}
+                        </div>
                     </div>
                 ))}
+
             </div>
-        </section>
+        </div>
     )
 }

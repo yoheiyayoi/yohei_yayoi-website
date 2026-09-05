@@ -1,8 +1,15 @@
-import type { Metadata } from "next";
-import WorkPage from "@/app/work/WorkPage";
+import React from 'react'
+import { type Metadata } from "next/types";
 
-export const metadata: Metadata = { title: "Roblox", description: "Roblox games and experiences by yooo_ (yohei_yayoi)." };
+export async function generateMetadata(): Promise<Metadata> {
+    return {
+        title: "Roblox",
+        description: "yooo_'s (yohei_yayoi) portfolio website",
+    };
+}
 
-export default function RobloxPage() {
-  return <WorkPage robloxOnly />;
+export default function page() {
+    return (
+        <div>Coming soon</div>
+    )
 }

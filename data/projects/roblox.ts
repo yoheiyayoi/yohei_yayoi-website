@@ -16,7 +16,7 @@ export const robloxProjects: Projects[] = [
     {
         title: "Seal's RNG",
         description: "แมพแนว RNG ที่ได้แรงบันดาลใจมาจาก Sol's RNG แต่เป็นแนวแมวน้ำ (อยู่ในช่วงพัฒนา)",
-        image: "/projects/ui/seals_rng_inventory.png",
+        image: "https://t3.rbxcdn.com/180DAY-2c1129a448e74940038294483f07d5a6",
         linkGithub: "",
         linkWebsite: "",
         linkRoblox: "",
@@ -76,7 +76,7 @@ export const robloxProjects: Projects[] = [
     {
         title: "Romino Sandbox",
         description: "แมพแนวต่อโดมิโน่ที่ได้รับแรงบันดาลใจมาจากเกม Domino Sandbox (เลิกพัฒนาแล้วตั้งแต่ปี 2024)",
-        image: "/projects/game/romino_sandbox.png",
+        image: "https://tr.rbxcdn.com/180DAY-c4ef7e2e5cf0b843199dbf93c57b4831/600/600/Image/Webp/noFilter",
         linkGithub: "",
         linkWebsite: "",
         linkRoblox: "https://www.roblox.com/games/11159777230/Romino-Sandbox",

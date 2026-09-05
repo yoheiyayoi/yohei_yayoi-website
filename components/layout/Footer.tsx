@@ -1,24 +1,39 @@
 import { cn } from "@/lib/utils";
-import { ArrowUpRight } from "lucide-react";
-import { Link } from "next-view-transitions";
+import { Discord, GitHubLight } from "@ridemountainpig/svgl-react";
 
-export default function Footer({ className }: { className?: string }) {
-  return (
-    <footer id="contact" className={cn("scroll-mt-24 border-t border-border bg-background", className)}>
-      <div className="site-width flex flex-col gap-4 py-6 text-xs text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
-        <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
-          <Link href="/" className="font-bold text-foreground">yooo<span className="text-primary">_</span></Link>
-          <p>© {new Date().getFullYear()} yohei_yayoi</p>
-        </div>
-        <nav aria-label="Social links" className="flex items-center gap-5">
-          <a className="text-link" href="https://github.com/yoheiyayoi" target="_blank" rel="noopener noreferrer">
-            GitHub <ArrowUpRight className="size-3" />
-          </a>
-          <a className="text-link" href="https://discord.com/invite/qp7rTNMgUD" target="_blank" rel="noopener noreferrer">
-            Discord <ArrowUpRight className="size-3" />
-          </a>
-        </nav>
-      </div>
-    </footer>
-  );
+import Image from "next/image";
+
+interface FooterProps {
+    className?: string;
+}
+
+export default function Footer({
+    className,
+}: FooterProps) {
+    return (
+        <footer className={cn("bg-white w-full border-t border-border/50", className)}>
+            <div className="mx-auto max-w-4xl px-6 w-full">
+                <div className="flex flex-col sm:flex-row items-center justify-between gap-3 text-gray-500 text-[12px] sm:text-[13px] tracking-wide text-center sm:text-left pb-6 border-t border-black/4 pt-4">
+                    <p>
+                        <Image src="/yooo_.png" width={45} height={45} alt="yooo_" />
+                        พัฒนาโดย{" "}
+                        <span className="text-gray-600 dark:text-white/45 font-medium">
+                            yooo_ (yohei_yayoi)
+                        </span>{" "}
+
+                        <span>
+                            <br />
+                            &copy; {new Date().getFullYear()} yooo_. All Rights Reserved.
+                        </span>
+                    </p>
+
+                    <div className="flex items-center gap-3 flex-wrap justify-center sm:justify-end">
+                        <a href="https://github.com/yoheiyayoi" target="_blank" className="size-6"><GitHubLight /></a>
+                        <a href="https://discord.com/invite/qp7rTNMgUD" target="_blank" className="size-6"><Discord /></a>
+                    </div>
+                </div>
+            </div>
+
+        </footer>
+    );
 }
