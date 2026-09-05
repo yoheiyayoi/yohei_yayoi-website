@@ -1,15 +1,10 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local"
-import { Google_Sans } from "next/font/google"
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import { ThemeProvider } from "@/components/theme-provider";
 import FooterSection from "@/components/layout/Footer";
 import { ViewTransitions } from 'next-view-transitions'
-
-const googleSans = Google_Sans({
-  subsets: ['latin'],
-})
 
 const lineSeed = localFont({
   src: [
@@ -38,7 +33,9 @@ const lineSeed = localFont({
       weight: '900',
       style: 'normal',
     },
-  ]
+  ],
+  variable: '--font-line-seed',
+  display: 'swap',
 })
 
 export const metadata: Metadata = {
@@ -62,18 +59,16 @@ export default function RootLayout({
         data-theme="light"
         style={{ colorScheme: "light" }}
       >
-        <body className={`${googleSans.className} antialiased`}>
+        <body className={`${lineSeed.className} ${lineSeed.variable} antialiased`}>
           <ThemeProvider
             defaultTheme="light"
             enableSystem={false}
             disableTransitionOnChange
           >
-            <div
-              className="absolute inset-0 -z-10 h-full w-full bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] bg-size-[16px_16px]"
-            ></div>
+            <a href="#main-content" className="skip-link">Skip to content</a>
             <div className="flex flex-col min-h-screen">
               <Navbar />
-              <main className="grow px-5 container mx-auto">
+              <main id="main-content" className="grow">
                 {children}
               </main>
               <FooterSection />

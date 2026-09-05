@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import { cn, formatDate } from '@/lib/utils';
+import { formatDate } from '@/lib/utils';
 import { PostMetadata } from '@/lib/posts';
 import Badge from '../Badge';
 import { Link } from 'next-view-transitions';
@@ -7,9 +7,9 @@ import { Link } from 'next-view-transitions';
 export const BlogCard = ({ blog }: { blog: PostMetadata }) => {
     return (
         <Link
-            href={`/blog/${blog.slug}` as any}
+            href={`/blog/${blog.slug}`}
             key={blog.metadata.title}
-            className="group flex flex-col md:flex-row gap-4 md:gap-6 p-4 rounded-2xl ring-1 ring-black/5 bg-white/40 backdrop-blur-sm hover:bg-slate-50 hover:ring-black/10 hover:scale-[101%] transition"
+            className="group flex flex-col gap-6 border-b border-border pb-8 transition-colors hover:text-primary md:flex-row md:gap-9"
         >
 
             {/* Image */}
@@ -19,7 +19,7 @@ export const BlogCard = ({ blog }: { blog: PostMetadata }) => {
                     alt={blog.metadata.title}
                     width={800}
                     height={600}
-                    className="w-full md:w-48 md:h-32 object-cover rounded-xl transition-transform duration-300 group-hover/image:scale-110"
+                    className="aspect-[4/3] w-full object-cover md:h-44 md:w-64"
                 />
             </div>
 

@@ -1,120 +1,263 @@
-"use client"
+"use client";
 
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import { ExternalLink, X, List } from 'lucide-react'
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { ArrowUpRight, X } from "lucide-react";
 import { projects } from "@/data/project";
-import { Link } from 'next-view-transitions'
 import Image from "next/image";
-import { useState } from 'react';
-import { Button } from '@/components/ui/button';
-import { ProjectCard } from '@/components/project-card';
+import { useEffect, useRef, useState } from "react";
+import { ProjectCard } from "@/components/project-card";
 
-export default function WorkPage() {
-    const [selectedImage, setSelectedImage] = useState<{ src: string; alt: string } | null>(null);
+const robloxSections = [
+  {
+    id: "map",
+    title: "Map",
+    category: "Roblox",
+    description: "Worlds, games, and experiences I’ve helped create.",
+  },
+  {
+    id: "system",
+    title: "System",
+    category: "Script",
+    description:
+      "Gameplay mechanics and the systems behind the experience.",
+  },
+  {
+    id: "ui",
+    title: "UI",
+    category: "UI",
+    description:
+      "Interfaces, menus, and the little details players interact with.",
+  },
+  {
+    id: "animation",
+    title: "Animation",
+    category: "Animation",
+    description: "Movement, character, and bringing ideas to life.",
+  },
+  {
+    id: "building",
+    title: "Building",
+    category: "Building",
+    description: "Environments, spaces, and the details that make a world.",
+  },
+];
 
-    const projectCategories = Array.from(new Set(projects.map((p) => p.category || "Others")));
-    const tabs = [
-        { value: "All", label: "All" },
-        ...projectCategories.map((cat) => ({ value: cat, label: cat })),
-    ];
-
-    const getItemsForTab = (tabValue: string) => {
-        const items =
-            tabValue === "All"
-                ? [...projects]
-                : projects.filter((p) => (p.category || "Others") === tabValue);
-
-        return items.sort((a: any, b: any) => {
-            // what the heck even is this logic?
-            // i don't know but it's working
-            if ((b.year ?? 0) !== (a.year ?? 0)) {
-                return (b.year ?? 0) - (a.year ?? 0);
-            }
-
-            return (b.id ?? -1) - (a.id ?? -1);
-        });
-    };
-
-    return (
-        <div className="container max-w-3xl mx-auto">
-            <div className="py-10">
-                <div>
-                    <div className="mb-5">
-                        <h1 className="font-bold text-xl md:text-2xl mb-3 flex items-center gap-2">
-                            <List className="w-7 h-7 text-blue-500" />
-                            Projects
-                        </h1>
-
-                        <p className="monkey-font text-lg md:text-xl gradient-text">โปรเจกต์หรืองานต่าง ๆ ที่ผมเคยทำมา</p>
-
-                        <div className='text-md text-zinc-500 flex flex-col sm:flex-row gap-2 sm:items-center mt-2'>
-                            <span>โน๊ต: คลิกที่รูปภาพเพื่อดูขนาดเต็ม และ แนะนำให้ดูงานทั้งหมดใน</span>
-                            <Button variant="outline" size="sm" asChild className="w-fit hover:scale-105 hover:rotate-3 transition">
-                                <Link href={"https://discord.gg/qp7rTNMgUD"} target='_blank'>
-                                    <ExternalLink className="w-4 h-4 mr-1" /> ดิสคอร์ด
-                                </Link>
-                            </Button>
-                            <span>จะอัปเดตเร็วกว่า</span>
-                        </div>
-                    </div>
-
-                    <Tabs defaultValue="All" className="w-full flex flex-col gap-4">
-                        <TabsList className="flex flex-wrap items-center justify-start w-full h-auto! p-1.5 bg-muted rounded-lg gap-1.5">
-                            {tabs.map((t) => {
-                                const count = getItemsForTab(t.value).length;
-                                return (
-                                    <TabsTrigger
-                                        key={t.value}
-                                        value={t.value}
-                                        className="px-4 h-8 text-sm rounded-md shrink-0 data-[state=active]:bg-background data-[state=active]:shadow-sm flex items-center gap-1.5"
-                                    >
-                                        {t.label}
-                                        <span className="text-[11px] px-1.5 py-0.5 rounded-full bg-muted text-muted-foreground group-data-[state=active]:bg-slate-300 group-data-[state=active]:text-slate-700">
-                                            {count}
-                                        </span>
-                                    </TabsTrigger>
-                                );
-                            })}
-                        </TabsList>
-
-                        {tabs.map((t) => (
-                            <TabsContent key={t.value} value={t.value} className="w-full grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-3 m-0 outline-none">
-                                {getItemsForTab(t.value).map((item, index) => (
-                                    <ProjectCard key={index} project={item as any} setSelectedImage={setSelectedImage} />
-                                ))}
-                            </TabsContent>
-                        ))}
-                    </Tabs>
-                </div>
-            </div>
-
-            {/* Image Modal */}
-            {selectedImage && (
-                <div
-                    className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-4 animate-in fade-in duration-200"
-                    onClick={() => setSelectedImage(null)}
-                >
-                    <button
-                        onClick={() => setSelectedImage(null)}
-                        className="absolute top-4 right-4 z-10 p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors"
-                        aria-label="Close"
-                    >
-                        <X className="w-6 h-6 text-white" />
-                    </button>
-                    <div
-                        className="relative max-w-7xl max-h-[90vh] w-full h-full flex items-center justify-center"
-                        onClick={(e) => e.stopPropagation()}
-                    >
-                        <Image
-                            src={selectedImage.src}
-                            alt={selectedImage.alt}
-                            width={1920}
-                            height={1080}
-                            className="max-w-full max-h-full object-contain rounded-lg animate-in zoom-in-95 duration-300"
-                        />
-                    </div>
-                </div>
-            )}
-        </div>
+export default function WorkPage({
+  robloxOnly = false,
+}: {
+  robloxOnly?: boolean;
+}) {
+  const [selectedImage, setSelectedImage] = useState<{
+    src: string;
+    alt: string;
+  } | null>(null);
+  const dialog = useRef<HTMLDialogElement>(null);
+  const collection = robloxOnly
+    ? projects.filter((project) =>
+      robloxSections.some(
+        (section) => section.category === project.category,
+      ),
     )
+    : projects;
+  const tabs = [
+    "All",
+    ...Array.from(
+      new Set(collection.map((project) => project.category || "Others")),
+    ),
+  ];
+  const getItemsForTab = (tab: string) =>
+    collection
+      .filter(
+        (project) =>
+          tab === "All" || (project.category || "Others") === tab,
+      )
+      .sort(
+        (a, b) =>
+          (b.year ?? 0) - (a.year ?? 0) ||
+          (b.id ?? -1) - (a.id ?? -1),
+      );
+
+  useEffect(() => {
+    if (!selectedImage || !dialog.current) return;
+    const previousFocus = document.activeElement as HTMLElement | null;
+    const modal = dialog.current;
+    const previousOverflow = document.body.style.overflow;
+    modal.showModal();
+    document.body.style.overflow = "hidden";
+    return () => {
+      modal.close();
+      document.body.style.overflow = previousOverflow;
+      previousFocus?.focus();
+    };
+  }, [selectedImage]);
+
+  return (
+    <div className="site-width section-space">
+      <div className="mb-12 border-b border-border pb-10">
+        <p className="eyebrow">
+          {robloxOnly
+            ? "PLAY / EXPLORE / DISCOVER"
+            : "A COLLECTION OF IDEAS BROUGHT TO LIFE"}
+        </p>
+        <h1 className="mt-5 text-4xl tracking-tight md:text-6xl">
+          {robloxOnly ? "Made for play." : "Work & experiments."}
+        </h1>
+        <div className="mt-6 flex flex-col justify-between gap-5 md:flex-row md:items-end">
+          <p className="max-w-lg text-base leading-relaxed text-muted-foreground">
+            {robloxOnly
+              ? "Worlds, games, and experiences I’ve helped bring to life on Roblox."
+              : "เว็บไซต์ เกม และสิ่งที่ได้ลองทำ — รวมผลงานที่เกิดจากความอยากรู้อยากลองของผม"}
+            <span className="mt-2 block text-sm">
+              Click any image for a closer look.
+            </span>
+          </p>
+          <a
+            href="https://discord.gg/qp7rTNMgUD"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-link text-sm text-primary"
+          >
+            Latest updates on Discord{" "}
+            <ArrowUpRight className="size-4" />
+          </a>
+        </div>
+      </div>
+      {robloxOnly ? (
+        <>
+          <nav
+            aria-label="Roblox sections"
+            className="mb-14 flex flex-wrap gap-x-7 gap-y-3 border-b border-border pb-6"
+          >
+            {robloxSections.map((section) => (
+              <a
+                key={section.id}
+                href={`#${section.id}`}
+                className="text-link min-h-10 text-sm"
+              >
+                {section.title}
+                <span className="text-xs text-muted-foreground">
+                  {getItemsForTab(section.category).length}
+                </span>
+              </a>
+            ))}
+          </nav>
+          <div className="space-y-20">
+            {robloxSections.map((section, index) => {
+              const items = getItemsForTab(section.category);
+              return (
+                <section
+                  key={section.id}
+                  id={section.id}
+                  aria-labelledby={`${section.id}-title`}
+                  className="scroll-mt-28"
+                >
+                  <div className="mb-8 flex items-start gap-5 border-t border-border pt-7">
+                    <span className="eyebrow pt-2">
+                      0{index + 1}
+                    </span>
+                    <div>
+                      <h2
+                        id={`${section.id}-title`}
+                        className="text-3xl tracking-tight md:text-4xl"
+                      >
+                        {section.title}
+                      </h2>
+                      <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                        {section.description}
+                      </p>
+                    </div>
+                  </div>
+                  {items.length ? (
+                    <div className="grid grid-cols-1 gap-x-7 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">
+                      {items.map((project) => (
+                        <ProjectCard
+                          key={`${project.category}-${project.title}`}
+                          project={project}
+                          setSelectedImage={
+                            setSelectedImage
+                          }
+                        />
+                      ))}
+                    </div>
+                  ) : (
+                    <p className="border-l-2 border-primary/30 bg-secondary/60 px-6 py-7 text-sm text-muted-foreground">
+                      ยังไม่มีผลงานในหมวดนี้
+                    </p>
+                  )}
+                </section>
+              );
+            })}
+          </div>
+        </>
+      ) : (
+        <Tabs defaultValue="All" className="gap-9">
+          {!robloxOnly && (
+            <TabsList className="h-auto! w-full flex-wrap justify-start gap-2 rounded-none bg-transparent p-0">
+              {tabs.map((tab) => (
+                <TabsTrigger
+                  key={tab}
+                  value={tab}
+                  className="h-10 flex-none gap-3 rounded-none border border-border px-4 text-sm data-[state=active]:border-primary data-[state=active]:bg-primary data-[state=active]:text-white data-[state=active]:shadow-none"
+                >
+                  {tab}
+                  <span className="text-[10px] opacity-70">
+                    {getItemsForTab(tab).length}
+                  </span>
+                </TabsTrigger>
+              ))}
+            </TabsList>
+          )}
+          {(robloxOnly ? ["All"] : tabs).map((tab) => (
+            <TabsContent
+              key={tab}
+              value={tab}
+              className="m-0 grid grid-cols-1 gap-x-7 gap-y-14 sm:grid-cols-2 lg:grid-cols-3"
+            >
+              {getItemsForTab(tab).map((project) => (
+                <ProjectCard
+                  key={`${project.category}-${project.title}`}
+                  project={project}
+                  setSelectedImage={setSelectedImage}
+                />
+              ))}
+            </TabsContent>
+          ))}
+        </Tabs>
+      )}
+      <dialog
+        ref={dialog}
+        aria-label={
+          selectedImage
+            ? `Image preview: ${selectedImage.alt}`
+            : "Image preview"
+        }
+        onClose={() => setSelectedImage(null)}
+        onClick={(event) => {
+          if (event.target === event.currentTarget)
+            setSelectedImage(null);
+        }}
+        className="fixed inset-0 m-auto h-[100dvh] max-h-none w-screen max-w-none bg-black/90 p-5 backdrop:bg-black/60 open:flex open:items-center open:justify-center"
+      >
+        <button
+          type="button"
+          autoFocus
+          onClick={() => setSelectedImage(null)}
+          className="absolute top-5 right-5 z-10 flex size-11 items-center justify-center rounded-full bg-white text-foreground"
+          aria-label="Close image preview"
+        >
+          <X className="size-5" />
+        </button>
+        {selectedImage && (
+          <Image
+            src={selectedImage.src}
+            alt={selectedImage.alt}
+            // unoptimized={selectedImage.src.startsWith("https://")}
+            width={1920}
+            height={1080}
+            className="max-h-[85dvh] w-auto max-w-full object-contain"
+          />
+        )}
+      </dialog>
+    </div>
+  );
 }

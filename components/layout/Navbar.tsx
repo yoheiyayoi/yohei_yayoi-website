@@ -1,111 +1,109 @@
-"use client"
+"use client";
 
-import { cn } from '@/lib/utils'
-import { Link } from 'next-view-transitions'
-import React, { useEffect, useState } from 'react'
-import { usePathname } from 'next/navigation'
-import { Button } from '../ui/button'
-import { Menu, X } from 'lucide-react'
+import { cn } from "@/lib/utils";
+import { Link } from "next-view-transitions";
+import { useState } from "react";
+import { usePathname } from "next/navigation";
+import { Button } from "../ui/button";
+import { ArrowUpRight, Menu, X } from "lucide-react";
 
-const Links = [
-    { name: 'Home', href: '/' },
-    { name: 'Work', href: '/work' },
-    { name: 'Roblox', href: '/roblox' },
-    { name: 'Blog', href: '/blog' },
-]
+const links = [
+  { name: "Home", href: "/" },
+  { name: "Work", href: "/work" },
+  { name: "Roblox", href: "/roblox" },
+  { name: "Blog", href: "/blog" },
+];
 
 export default function Navbar() {
-    const pathname = usePathname()
-    const [open, setOpen] = useState(false)
+  const pathname = usePathname();
+  const [open, setOpen] = useState(false);
 
-    useEffect(() => {
-        setOpen(false)
-    }, [pathname])
+  const isActive = (href: string) =>
+    href === "/" ? pathname === "/" : pathname === href || pathname.startsWith(`${href}/`);
 
-    return (
-        <header className="sticky top-0 left-0 z-50 bg-white/50 backdrop-blur-md border-b border-gray-200/50 w-full">
-            <div className="p-4">
-                <div className="flex items-center justify-between max-w-4xl mx-auto">
-                    {/* Logo */}
-                    <Link href="/" className="flex items-center gap-2 order-first" onClick={() => setOpen(false)}>
-                        <img src="/yooo_.png" className="max-h-8" alt="yooo_ Logo" />
-                    </Link>
+  return (
+    <header className="sticky top-0 z-40 border-b border-border bg-background/95 backdrop-blur-md">
+      <div className="site-width flex h-16 items-center justify-between gap-6">
+        <Link
+          href="/"
+          aria-label="yooo_ home"
+          onClick={() => setOpen(false)}
+          className="flex items-center gap-4"
+        >
+          <span className="text-[30px] font-bold tracking-[-0.08em]">
+            yooo<span className="text-primary">_</span>
+          </span>
+          <span className="hidden border-l border-border pl-4 text-[10px] leading-relaxed tracking-[0.16em] text-muted-foreground lg:block">
+            DEVELOPER
+            <br />
+            &amp; CREATOR
+          </span>
+        </Link>
 
-                    {/* Mobile toggle */}
-                    <Button
-                        type="button"
-                        className="sm:hidden bg-transparent text-black"
-                        size="icon"
-                        aria-label="Toggle navigation"
-                        aria-expanded={open}
-                        aria-controls="mobile-nav"
-                        onClick={() => setOpen((v) => !v)}
-                    >
-                        {/* simple icon swap */}
-                        <Menu className={cn('h-5 w-5', open ? 'hidden' : 'block')} />
-                        <X className={cn('h-5 w-5', open ? 'block' : 'hidden')} />
-                    </Button>
+        <nav aria-label="Main navigation" className="hidden h-full items-center gap-9 sm:flex">
+          {links.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              aria-current={isActive(link.href) ? "page" : undefined}
+              className={cn(
+                "flex h-full items-center border-b-2 px-1 text-sm transition-colors hover:text-primary",
+                isActive(link.href)
+                  ? "border-primary text-primary"
+                  : "border-transparent text-muted-foreground"
+              )}
+            >
+              {link.name}
+            </Link>
+          ))}
+        </nav>
 
-                    {/* Desktop nav */}
-                    <div className="hidden sm:flex items-center">
-                        {Links.map((link) => {
-                            const isActive =
-                                link.href === '/'
-                                    ? pathname === '/'
-                                    : pathname === link.href || pathname.startsWith(`${link.href}/`)
+        {/* <a href="#contact" onClick={() => setOpen(false)} className="text-link hidden text-sm sm:inline-flex">
+          Let's connect <ArrowUpRight className="size-4 text-primary" />
+        </a> */}
 
-                            return (
-                                <Link
-                                    key={link.name}
-                                    href={link.href}
-                                    className={cn(
-                                        'mx-2 font-medium transition hover:text-gray-900',
-                                        isActive ? 'text-gray-900 underline underline-offset-3' : 'text-gray-500'
-                                    )}
-                                >
-                                    {link.name}
-                                </Link>
-                            )
-                        })}
-                    </div>
-                </div>
+        <Button
+          type="button"
+          variant="ghost"
+          size="icon"
+          className="sm:hidden"
+          aria-label={open ? "Close navigation" : "Open navigation"}
+          aria-expanded={open}
+          aria-controls="mobile-nav"
+          onClick={() => setOpen(!open)}
+        >
+          {open ? <X /> : <Menu />}
+        </Button>
+      </div>
 
-                {/* Mobile menu (slide-down) */}
-                <div
-                    className={cn(
-                        'sm:hidden max-w-4xl mx-auto overflow-hidden transition-[max-height,opacity] duration-200',
-                        open ? 'max-h-40 opacity-100' : 'max-h-0 opacity-0'
-                    )}
-                >
-                    <nav
-                        id="mobile-nav"
-                        className="mt-3 rounded-lg border border-gray-200/70 bg-white/40 backdrop-blur-sm"
-                    >
-                        <div className="flex flex-col p-2">
-                            {Links.map((link) => {
-                                const isActive =
-                                    link.href === '/'
-                                        ? pathname === '/'
-                                        : pathname === link.href || pathname.startsWith(`${link.href}/`)
-
-                                return (
-                                    <Link
-                                        key={link.name}
-                                        href={link.href}
-                                        onClick={() => setOpen(false)}
-                                        className={cn(
-                                            'px-3 py-2 rounded-md font-medium transition hover:bg-white/50 hover:text-gray-900',
-                                            isActive ? 'text-gray-900 bg-white/50' : 'text-gray-600'
-                                        )}
-                                    >
-                                        {link.name}
-                                    </Link>
-                                )
-                            })}
-                        </div>
-                    </nav>
-                </div>
-            </div>
-        </header>
-    )
+      {open && (
+        <nav
+          id="mobile-nav"
+          aria-label="Mobile navigation"
+          onKeyDown={(event) => {
+            if (event.key === "Escape") setOpen(false);
+          }}
+          className="site-width border-t border-border py-4 sm:hidden"
+        >
+          {links.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              onClick={() => setOpen(false)}
+              aria-current={isActive(link.href) ? "page" : undefined}
+              className={cn(
+                "block px-2 py-3 text-sm",
+                isActive(link.href) ? "bg-secondary text-primary" : "text-muted-foreground"
+              )}
+            >
+              {link.name}
+            </Link>
+          ))}
+          {/* <a href="#contact" onClick={() => setOpen(false)} className="text-link px-2 py-3 text-sm">
+            Let's connect <ArrowUpRight className="size-4" />
+          </a> */}
+        </nav>
+      )}
+    </header>
+  );
 }
